@@ -1,0 +1,218 @@
+<!doctype html>
+<html lang="th"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>ใบงานออนไลน์ที่ 1</title><style>
+:root{
+  --ink:#183153; --muted:#60758a; --line:#dbe8f5; --paper:#ffffff;
+  --blue:#2f80ed; --cyan:#56ccf2; --pink:#ff5c9a; --orange:#ff9f43;
+  --green:#27ae60; --purple:#8e5de7; --yellow:#ffd166; --danger:#d63031;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{
+  margin:0;font-family:"Tahoma","Noto Sans Thai",sans-serif;color:var(--ink);
+  background:
+    radial-gradient(circle at 8% 8%,#fff3bd 0 7%,transparent 8%),
+    radial-gradient(circle at 92% 10%,#ffd6e7 0 7%,transparent 8%),
+    linear-gradient(135deg,#eafaff,#fff7ed);
+}
+.wrap{max-width:980px;margin:auto;padding:24px 14px 60px}
+.hero{
+  position:relative;overflow:hidden;color:white;border-radius:30px;padding:28px;
+  box-shadow:0 18px 40px #244f7d25;
+}
+.hero:after{
+  content:"</>";position:absolute;right:26px;top:8px;font-size:100px;
+  font-weight:900;opacity:.12
+}
+.badge{display:inline-block;background:#fff;color:#2457a6;padding:7px 14px;border-radius:999px;font-weight:800}
+h1{font-size:clamp(28px,5vw,44px);margin:12px 0 4px}
+.hero p{margin:4px 0;line-height:1.7}
+.progress{height:11px;background:#ffffff40;border-radius:99px;overflow:hidden;margin-top:18px}
+.bar{height:100%;width:0;background:linear-gradient(90deg,#ffd166,#ff5c9a,#56ccf2);transition:.25s}
+.student{display:grid;grid-template-columns:1.5fr .8fr .6fr;gap:12px;margin:18px 0}
+input[type=text], textarea, select{
+  width:100%;border:2px solid var(--line);border-radius:15px;padding:12px 14px;
+  font:inherit;background:white;outline:none
+}
+input[type=text]:focus,textarea:focus,select:focus{
+  border-color:#56ccf2;box-shadow:0 0 0 4px #56ccf233
+}
+.card{
+  background:var(--paper);margin:18px 0;border-radius:24px;padding:20px;
+  box-shadow:0 10px 28px #315b7b15;border:1px solid #e8f0f7
+}
+.cardhead{display:flex;align-items:center;gap:12px;margin-bottom:12px}
+.num{
+  width:48px;height:48px;border-radius:15px;display:grid;place-items:center;color:#fff;
+  font-size:22px;font-weight:900;flex:0 0 auto
+}
+.tag{font-weight:900;font-size:18px}
+.q{font-weight:800;font-size:18px;line-height:1.55;margin:8px 0}
+.hint{padding:11px 13px;border-radius:14px;background:#f5f9fc;color:var(--muted);font-size:14px;margin:10px 0}
+textarea{min-height:96px;resize:vertical}
+.short{min-height:72px}
+.choice-row{display:flex;gap:9px;flex-wrap:wrap;margin-top:12px}
+.choice-row label,.pick{
+  border:2px solid #d8e6f1;border-radius:14px;padding:10px 13px;background:#fff;cursor:pointer
+}
+.choice-row input{margin-right:6px}
+.grid3{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}
+.scenario{padding:14px;border-radius:16px;background:#f8fbff;border:1px solid #e3edf6}
+.scenario b{display:block;margin-bottom:7px}
+.orderlist{display:grid;gap:8px}
+.orderrow{display:grid;grid-template-columns:36px 1fr;gap:8px;align-items:center}
+.actions{display:flex;gap:10px;justify-content:center;flex-wrap:wrap;margin-top:24px}
+button{
+  border:0;border-radius:999px;padding:13px 22px;font:inherit;font-weight:800;cursor:pointer
+}
+.primary{background:linear-gradient(135deg,#2457a6,#44c7e8);color:white;box-shadow:0 8px 18px #2457a633}
+.secondary{background:#fff;color:#2457a6;border:2px solid #cfe6f7}
+.danger{background:#fff1f1;color:#d63031}
+.status{text-align:center;font-weight:800;min-height:24px;margin-top:12px}
+.footer{text-align:center;color:#71879a;font-size:13px;margin-top:20px}
+.toast{
+  position:fixed;left:50%;bottom:22px;transform:translateX(-50%);
+  background:#17324d;color:#fff;padding:10px 16px;border-radius:999px;
+  opacity:0;pointer-events:none;transition:.25s;z-index:50
+}
+.toast.show{opacity:1}
+@media(max-width:700px){
+  .student{grid-template-columns:1fr}
+  .grid3{grid-template-columns:1fr}
+  .hero,.card{border-radius:20px}
+}
+@media print{
+  body{background:#fff}.actions,.progress,.status,.toast{display:none}
+  .wrap{max-width:none}.hero,.card{box-shadow:none}
+  .card{break-inside:avoid}
+}
+</style></head>
+<body><div class="wrap">
+<section class="hero" style="background:linear-gradient(120deg,#2457a6,#44c7e8 60%,#7bdcb5)">
+<span class="badge">หน่วยการเรียนรู้ที่ 2 • ONLINE WORKSHEET</span>
+<h1>ใบงานออนไลน์ที่ 1</h1><p><b>การเขียนโปรแกรมคอมพิวเตอร์และอัลกอริทึม</b></p>
+<p>คิดเป็นขั้นตอน • วิเคราะห์เป็นระบบ • ตอบด้วยภาษาของตนเอง</p>
+<div class="progress"><div class="bar" id="bar"></div></div>
+<div style="margin-top:8px;font-weight:800">ความคืบหน้า: <span id="progressText">0/10 ข้อ</span></div>
+</section>
+<div class="student">
+<input type="text" id="name" data-save placeholder="👤 ชื่อ–สกุล">
+<input type="text" id="room" data-save placeholder="🏫 ชั้น / ห้อง">
+<input type="text" id="no" data-save placeholder="🔢 เลขที่">
+</div>
+<section class="card" data-question>
+<div class="cardhead"><div class="num" style="background:#ff5c9a">01</div><div class="tag">คิดวิเคราะห์</div></div>
+<div class="q">ถ้าครูต้องการสร้างโปรแกรมตรวจผลสอบ โดยกำหนดว่า “คะแนนตั้งแต่ 50 คะแนนขึ้นไป = สอบผ่าน และต่ำกว่า 50 คะแนน = สอบตก” นักเรียนควรเลือกใช้อัลกอริทึมรูปแบบใด เพราะเหตุใด?</div>
+<textarea id="w1q1" data-save placeholder="อธิบายเหตุผลจากเงื่อนไขของสถานการณ์ด้วยคำของตนเอง..."></textarea></section><section class="card" data-question data-type="radio" data-name="w1q2">
+<div class="cardhead"><div class="num" style="background:#ff9f43">02</div><div class="tag">เลือกตอบ</div></div>
+<div class="q">ขั้นตอนใดเป็นการนำวิธีแก้ปัญหาที่ออกแบบไว้มาเขียนเป็นคำสั่งด้วยภาษาคอมพิวเตอร์?</div>
+<div class="choice-row"><label><input id="w1q2a" data-save type="radio" name="w1q2" value="วิเคราะห์ปัญหา">วิเคราะห์ปัญหา</label><label><input id="w1q2b" data-save type="radio" name="w1q2" value="เขียนโปรแกรม">เขียนโปรแกรม</label><label><input id="w1q2c" data-save type="radio" name="w1q2" value="บำรุงรักษา">บำรุงรักษา</label></div></section><section class="card" data-question>
+<div class="cardhead"><div class="num" style="background:#8e5de7">03</div><div class="tag">เรียงความคิด</div></div>
+<div class="q">ก่อนเริ่มเขียนโปรแกรม นักเรียนคิดว่าเหตุใดจึงควร “วิเคราะห์ปัญหา” ให้ชัดเจนก่อน?</div>
+<textarea id="w1q3" data-save placeholder="เชื่อมโยงกับข้อมูลเข้า การประมวลผล หรือผลลัพธ์..."></textarea></section><section class="card" data-question>
+<div class="cardhead"><div class="num" style="background:#27ae60">04</div><div class="tag">สถานการณ์แก้บั๊ก</div></div>
+<div class="q">โปรแกรมคำนวณคะแนนทำงานได้ แต่แสดงผลรวมผิด นักเรียนควรกลับไปตรวจสอบขั้นตอนใด และควรทำอะไร?</div>
+<textarea id="w1q4" data-save placeholder="ตอบโดยใช้แนวคิดจากขั้นตอนการทดสอบและแก้ไขโปรแกรม..."></textarea></section><section class="card" data-question>
+<div class="cardhead"><div class="num" style="background:#2f80ed">05</div><div class="tag">ออกแบบขั้นตอน</div></div>
+<div class="q">ถ้าต้องออกแบบขั้นตอน “เข้าสู่ระบบห้องเรียนออนไลน์” ตั้งแต่กรอกข้อมูลจนเข้าสู่หน้าบทเรียน นักเรียนจะเขียนอย่างน้อย 5 ขั้นตอนอย่างไร?</div>
+<div class="orderrow"><b>1.</b><input type="text" id="w1q5_1" data-save placeholder="ขั้นตอนที่ 1"></div><div class="orderrow"><b>2.</b><input type="text" id="w1q5_2" data-save placeholder="ขั้นตอนที่ 2"></div><div class="orderrow"><b>3.</b><input type="text" id="w1q5_3" data-save placeholder="ขั้นตอนที่ 3"></div><div class="orderrow"><b>4.</b><input type="text" id="w1q5_4" data-save placeholder="ขั้นตอนที่ 4"></div><div class="orderrow"><b>5.</b><input type="text" id="w1q5_5" data-save placeholder="ขั้นตอนที่ 5"></div></section><section class="card" data-question>
+<div class="cardhead"><div class="num" style="background:#ff5c9a">06</div><div class="tag">ตอบสั้น</div></div>
+<div class="q">การเขียนโปรแกรมคอมพิวเตอร์ประกอบด้วย 6 ขั้นตอน อะไรบ้าง?</div>
+<textarea class="short" id="w1q6" data-save placeholder="เริ่มจากวิเคราะห์ปัญหา และจบที่บำรุงรักษาโปรแกรม"></textarea></section><section class="card" data-question>
+<div class="cardhead"><div class="num" style="background:#ff9f43">07</div><div class="tag">ตอบสั้น</div></div>
+<div class="q">ในขั้นตอน “การวิเคราะห์ปัญหา” ผู้เขียนโปรแกรมควรพิจารณาสิ่งสำคัญ 3 ส่วนใดบ้าง?</div>
+<textarea class="short" id="w1q7" data-save placeholder="ผลลัพธ์ที่ต้องการ / ข้อมูลนำเข้า / แนวทางแก้ปัญหา"></textarea></section><section class="card" data-question>
+<div class="cardhead"><div class="num" style="background:#d9a300">08</div><div class="tag">ตอบสั้น</div></div>
+<div class="q">อัลกอริทึมคืออะไร และจากบทเรียนมีรูปแบบการเขียนอัลกอริทึม 3 รูปแบบใดบ้าง?</div>
+<textarea id="w1q8" data-save placeholder="ให้ทั้งความหมายและ 3 รูปแบบ..."></textarea></section><section class="card" data-question data-type="radio" data-name="w1q9">
+<div class="cardhead"><div class="num" style="background:#27ae60">09</div><div class="tag">ถูก–ผิด</div></div>
+<div class="q">“การทดสอบและแก้ไขโปรแกรม” เป็นขั้นตอนที่ช่วยตรวจสอบการทำงานของโปรแกรมและแก้ไขข้อผิดพลาด</div>
+<div class="choice-row"><label><input id="w1q9t" data-save type="radio" name="w1q9" value="ถูก">ถูก</label><label><input id="w1q9f" data-save type="radio" name="w1q9" value="ผิด">ผิด</label></div></section><section class="card" data-question data-type="multi">
+<div class="cardhead"><div class="num" style="background:#8e5de7">10</div><div class="tag">จับคู่สถานการณ์</div></div>
+<div class="q">เลือกประเภทอัลกอริทึมที่เหมาะสมกับแต่ละสถานการณ์</div>
+<div class="grid3">
+<div class="scenario"><b>🍳 A. ทำไข่ทอด</b>ตอกไข่ → ปรุงรส → ตั้งกระทะ → ทอดไข่ → ตักใส่จาน<select id="w1q10a" data-save><option value="">เลือกประเภท</option><option>แบบลำดับ</option><option>แบบทางเลือก</option><option>แบบทำซ้ำ</option></select></div>
+<div class="scenario"><b>🎓 B. ตรวจผลสอบ</b>คะแนนตั้งแต่ 50 ขึ้นไป = ผ่าน ต่ำกว่า 50 = ไม่ผ่าน<select id="w1q10b" data-save><option value="">เลือกประเภท</option><option>แบบลำดับ</option><option>แบบทางเลือก</option><option>แบบทำซ้ำ</option></select></div>
+<div class="scenario"><b>🛒 C. ชั่งมังคุด</b>หยิบใส่ตาชั่งทีละลูก และทำซ้ำจนได้น้ำหนัก 1 กิโลกรัม<select id="w1q10c" data-save><option value="">เลือกประเภท</option><option>แบบลำดับ</option><option>แบบทางเลือก</option><option>แบบทำซ้ำ</option></select></div>
+</div></section>
+<div class="actions">
+<button class="primary" onclick="submitWork()">✓ ตรวจความครบถ้วน</button>
+<button class="secondary" onclick="window.print()">🖨 พิมพ์ / บันทึก PDF</button>
+<button class="danger" onclick="clearWork('kv_u2_w1')">↻ ล้างคำตอบ</button>
+</div>
+<div id="status" class="status"></div>
+<div class="footer">KruVanda Classroom • คำตอบบันทึกอัตโนมัติในอุปกรณ์นี้ • ปิดการวางข้อความในช่องคำตอบ</div>
+</div><div id="toast" class="toast"></div>
+<script>
+function initWorksheet(prefix){
+  const fields=[...document.querySelectorAll('[data-save]')];
+  fields.forEach(el=>{
+    const key=prefix+'_'+el.id;
+    const saved=localStorage.getItem(key);
+    if(saved!==null){
+      if(el.type==='radio'||el.type==='checkbox') el.checked=(saved===el.value || saved==='true');
+      else el.value=saved;
+    }
+    const ev=(el.type==='radio'||el.type==='checkbox'||el.tagName==='SELECT')?'change':'input';
+    el.addEventListener(ev,()=>{
+      if(el.type==='radio'){
+        document.querySelectorAll('input[name="'+el.name+'"]').forEach(r=>{
+          localStorage.setItem(prefix+'_'+r.id, r.checked?r.value:'');
+        });
+      } else if(el.type==='checkbox'){
+        localStorage.setItem(key, el.checked?'true':'false');
+      } else localStorage.setItem(key,el.value);
+      updateProgress();
+    });
+  });
+  document.querySelectorAll('textarea,input[type=text]').forEach(el=>{
+    if(el.id==='name'||el.id==='room'||el.id==='no') return;
+    el.addEventListener('paste',e=>{
+      e.preventDefault();
+      showToast('ใบงานนี้ปิดการวางข้อความ เพื่อฝึกคิดและพิมพ์คำตอบด้วยตนเอง');
+    });
+  });
+  updateProgress();
+}
+function answeredGroup(group){
+  if(group.dataset.type==='radio') return !!document.querySelector('input[name="'+group.dataset.name+'"]:checked');
+  if(group.dataset.type==='multi'){
+    return [...group.querySelectorAll('select')].every(x=>x.value.trim());
+  }
+  const targets=[...group.querySelectorAll('textarea,input[type=text],select')].filter(x=>!['name','room','no'].includes(x.id));
+  return targets.length ? targets.every(x=>x.value.trim()) : false;
+}
+function updateProgress(){
+  const groups=[...document.querySelectorAll('[data-question]')];
+  const done=groups.filter(answeredGroup).length;
+  document.getElementById('bar').style.width=(done/groups.length*100)+'%';
+  document.getElementById('progressText').textContent=done+'/'+groups.length+' ข้อ';
+}
+function submitWork(){
+  const groups=[...document.querySelectorAll('[data-question]')];
+  const missing=groups.filter(g=>!answeredGroup(g)).length;
+  const s=document.getElementById('status');
+  if(missing){
+    s.textContent='⚠️ ยังเหลือ '+missing+' ข้อ/ส่วนที่ต้องตอบให้ครบ';
+    s.style.color='#d97706';
+  }else{
+    s.textContent='🎉 ตอบครบแล้ว สามารถกด “พิมพ์ / บันทึก PDF” เพื่อส่งครูได้';
+    s.style.color='#218c53';
+  }
+}
+function clearWork(prefix){
+  if(!confirm('ต้องการล้างคำตอบทั้งหมดของใบงานนี้หรือไม่?')) return;
+  Object.keys(localStorage).filter(k=>k.startsWith(prefix+'_')).forEach(k=>localStorage.removeItem(k));
+  document.querySelectorAll('[data-save]').forEach(el=>{
+    if(el.type==='radio'||el.type==='checkbox') el.checked=false; else el.value='';
+  });
+  document.getElementById('status').textContent='';
+  updateProgress();
+}
+function showToast(msg){
+  const t=document.getElementById('toast'); t.textContent=msg;t.classList.add('show');
+  setTimeout(()=>t.classList.remove('show'),2200);
+}
+
+document.addEventListener('DOMContentLoaded',()=>initWorksheet('kv_u2_w1'));
+</script></body></html>
