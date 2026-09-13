@@ -1,0 +1,102 @@
+<!doctype html>
+<html lang="th">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>ใบงานออนไลน์ หน่วยที่ 3 - หน้าที่ 4</title>
+<style>
+:root{--blue:#4776d0;--ink:#26334b;--line:#dce5f3;--bg:#f5f8ff;--orange:#ff9b50;--green:#238b68}
+*{box-sizing:border-box} body{margin:0;font-family:Tahoma,"Noto Sans Thai",sans-serif;background:linear-gradient(135deg,#edf5ff,#fff5e9);color:var(--ink)}
+.wrap{max-width:980px;margin:auto;padding:26px 15px 60px}.hero{padding:28px;border-radius:24px;background:linear-gradient(120deg,#456fd0,#7897e2);color:#fff;box-shadow:0 12px 34px #496ba72e}
+.hero h1{margin:0 0 8px;font-size:clamp(25px,4vw,38px)}.hero p{margin:5px 0}.card{background:#fff;border:1px solid var(--line);border-radius:20px;padding:20px;margin-top:17px;box-shadow:0 7px 22px #3a4d7212}
+.grid{display:grid;grid-template-columns:2fr 1fr;gap:12px}@media(max-width:650px){.grid{grid-template-columns:1fr}}
+label{font-weight:700}input[type=text],textarea,select{width:100%;padding:12px;border:1px solid #c9d6e8;border-radius:12px;font:inherit;margin-top:8px;background:#fff}textarea{min-height:95px;resize:vertical}
+.qhead{display:flex;gap:10px;align-items:center;margin-bottom:10px}.badge{padding:6px 11px;border-radius:999px;background:#eaf0ff;color:#365eb0;font-weight:700}
+.choice{display:inline-flex;gap:8px;align-items:center;margin:9px 15px 0 0;padding:10px 14px;border-radius:12px;background:#f7f9fd}.code{background:#172033;color:#eaf2ff;padding:14px;border-radius:12px;white-space:pre-wrap;font-family:Consolas,monospace;line-height:1.65}
+.match{display:grid;grid-template-columns:1fr 210px;gap:10px;align-items:center;margin:9px 0}@media(max-width:650px){.match{grid-template-columns:1fr}}
+.actions{display:flex;flex-wrap:wrap;gap:10px;margin-top:22px}.btn{border:0;border-radius:13px;padding:13px 18px;font:inherit;font-weight:700;cursor:pointer}.primary{background:var(--blue);color:white}.save{background:#fff0e3;color:#9b5518}.reset{background:#edf1f6;color:#4d596b}
+.result{display:none;background:#edf9f4;border:1px solid #bce7d6;padding:18px;border-radius:16px;margin-top:18px}.ok{color:#167d5a;font-weight:700}.no{color:#c74545;font-weight:700}.small{font-size:14px;color:#69778d}
+</style></head>
+<body><main class="wrap">
+<section class="hero"><h1>ใบงานออนไลน์ หน่วยการเรียนรู้ที่ 3</h1><p><b>หน้าที่ 4 : Global Variables และ Main Program</b></p><p>จำนวน 10 ข้อ • มีการตรวจคำตอบอัตโนมัติ • ข้อคิดวิเคราะห์ให้ครูตรวจ</p></section>
+
+<section class="card"><div class="grid">
+<label>ชื่อ–สกุล<input id="name" type="text" placeholder="กรอกชื่อ–สกุล"></label>
+<label>ชั้น–ห้อง<input id="room" type="text" placeholder="เช่น ปวช.1/1"></label></div></section>
+
+<section class="card"><div class="qhead"><span class="badge">ข้อ 1</span><b>ตอบสั้น</b></div>
+<p>ตัวแปรส่วนกลาง (Global Variables) คืออะไร และมีลักษณะสำคัญอย่างไร?</p><textarea id="q1"></textarea></section>
+
+<section class="card"><div class="qhead"><span class="badge">ข้อ 2</span><b>เติมคำ</b></div>
+<p>รูปแบบพื้นฐานในการประกาศตัวแปร คือ <b>ชนิดข้อมูล __________ ;</b></p><input id="q2" type="text" placeholder="เติมคำตอบ"></section>
+
+<section class="card"><div class="qhead"><span class="badge">ข้อ 3</span><b>ถูก / ผิด</b></div>
+<p>ภาษาซีถือว่าตัวอักษรพิมพ์ใหญ่และพิมพ์เล็กเป็นตัวแปรคนละตัวกัน เช่น NAME, Name และ name</p>
+<label class="choice"><input type="radio" name="q3" value="true"> ถูก</label><label class="choice"><input type="radio" name="q3" value="false"> ผิด</label></section>
+
+<section class="card"><div class="qhead"><span class="badge">ข้อ 4</span><b>ถูก / ผิด</b></div>
+<p>ในการตั้งชื่อตัวแปร สามารถนำคำสงวน (Reserved Words) ของภาษาซีมาตั้งเป็นชื่อตัวแปรได้</p>
+<label class="choice"><input type="radio" name="q4" value="true"> ถูก</label><label class="choice"><input type="radio" name="q4" value="false"> ผิด</label></section>
+
+<section class="card"><div class="qhead"><span class="badge">ข้อ 5</span><b>โยงคำตอบ</b></div><p>จับคู่ชนิดข้อมูลกับลักษณะข้อมูลให้สัมพันธ์กัน</p>
+<div class="match"><b>A. char</b><select id="q5a"><option value="">เลือกคำตอบ</option><option value="1">1. จำนวนเต็ม</option><option value="2">2. เลขทศนิยมความละเอียดสูง</option><option value="3">3. ตัวอักษร</option><option value="4">4. เลขทศนิยม</option></select></div>
+<div class="match"><b>B. int</b><select id="q5b"><option value="">เลือกคำตอบ</option><option value="1">1. จำนวนเต็ม</option><option value="2">2. เลขทศนิยมความละเอียดสูง</option><option value="3">3. ตัวอักษร</option><option value="4">4. เลขทศนิยม</option></select></div>
+<div class="match"><b>C. float</b><select id="q5c"><option value="">เลือกคำตอบ</option><option value="1">1. จำนวนเต็ม</option><option value="2">2. เลขทศนิยมความละเอียดสูง</option><option value="3">3. ตัวอักษร</option><option value="4">4. เลขทศนิยม</option></select></div>
+<div class="match"><b>D. double</b><select id="q5d"><option value="">เลือกคำตอบ</option><option value="1">1. จำนวนเต็ม</option><option value="2">2. เลขทศนิยมความละเอียดสูง</option><option value="3">3. ตัวอักษร</option><option value="4">4. เลขทศนิยม</option></select></div></section>
+
+<section class="card"><div class="qhead"><span class="badge">ข้อ 6</span><b>จำแนกประเภทตัวแปร</b></div>
+<div class="match"><code>int num;</code><select id="q6a"><option value="">เลือก</option><option>int</option><option>float</option><option>char</option><option>double</option></select></div>
+<div class="match"><code>float h;</code><select id="q6b"><option value="">เลือก</option><option>int</option><option>float</option><option>char</option><option>double</option></select></div>
+<div class="match"><code>char grade;</code><select id="q6c"><option value="">เลือก</option><option>int</option><option>float</option><option>char</option><option>double</option></select></div>
+<div class="match"><code>double total;</code><select id="q6d"><option value="">เลือก</option><option>int</option><option>float</option><option>char</option><option>double</option></select></div></section>
+
+<section class="card"><div class="qhead"><span class="badge">ข้อ 7</span><b>อ่านโค้ด</b></div>
+<div class="code">int num;
+float h;</div>
+<p>ตัวแปร num และ h ถูกสร้างขึ้นเพื่อเก็บข้อมูลชนิดใด?</p>
+<div class="grid"><label>num =<input id="q7a" type="text"></label><label>h =<input id="q7b" type="text"></label></div></section>
+
+<section class="card"><div class="qhead"><span class="badge">ข้อ 8</span><b>เติมโครงสร้าง / อธิบาย</b></div>
+<div class="code">int main()
+{
+    ______________________
+    return 0;
+}</div>
+<p>บริเวณภายในเครื่องหมาย { } มีหน้าที่เกี่ยวข้องกับส่วนใดของโปรแกรม และสามารถมีคำสั่งประเภทใดได้บ้าง?</p><textarea id="q8"></textarea></section>
+
+<section class="card"><div class="qhead"><span class="badge">ข้อ 9</span><b>คิดวิเคราะห์</b></div>
+<p>เพราะเหตุใดโปรแกรมภาษาซีจึงต้องมีฟังก์ชัน main() ตามเนื้อหาในใบความรู้? หากโปรแกรมไม่มีส่วนนี้ นักเรียนคิดว่าจะส่งผลต่อโครงสร้างของโปรแกรมอย่างไร?</p><textarea id="q9"></textarea></section>
+
+<section class="card"><div class="qhead"><span class="badge">ข้อ 10</span><b>ตรวจหาข้อผิดพลาด</b></div>
+<p>พิจารณาชื่อตัวแปรต่อไปนี้ตามกฎในใบความรู้ แล้วระบุชื่อที่ไม่เหมาะสม พร้อมอธิบายเหตุผล</p>
+<div class="code">score     2number     float     Student_Name</div>
+<textarea id="q10" placeholder="ระบุชื่อที่ไม่เหมาะสมและเหตุผล"></textarea></section>
+
+<div class="actions"><button class="btn primary" onclick="checkAnswers()">ตรวจคำตอบ</button><button class="btn save" onclick="saveWork()">บันทึกไว้ในเครื่องนี้</button><button class="btn reset" onclick="resetWork()">เริ่มใหม่</button></div>
+<div id="result" class="result"></div>
+<p class="small">ข้อ 1, 8, 9 และ 10 เป็นคำตอบแบบอธิบาย ให้ครูตรวจเพิ่มเติม</p>
+</main>
+<script>
+const ids=["name","room","q1","q2","q5a","q5b","q5c","q5d","q6a","q6b","q6c","q6d","q7a","q7b","q8","q9","q10"];
+const val=id=>document.getElementById(id).value.trim();
+const radio=n=>{let x=document.querySelector('input[name="'+n+'"]:checked');return x?x.value:""};
+function checkAnswers(){
+ let s=0,bad=[];
+ if(["ชื่อตัวแปร","ชื่อของตัวแปร"].includes(val("q2")))s++;else bad.push("ข้อ 2");
+ if(radio("q3")==="true")s++;else bad.push("ข้อ 3");
+ if(radio("q4")==="false")s++;else bad.push("ข้อ 4");
+ if(val("q5a")==="3"&&val("q5b")==="1"&&val("q5c")==="4"&&val("q5d")==="2")s++;else bad.push("ข้อ 5");
+ if(val("q6a")==="int"&&val("q6b")==="float"&&val("q6c")==="char"&&val("q6d")==="double")s++;else bad.push("ข้อ 6");
+ let a=val("q7a").toLowerCase(),b=val("q7b").toLowerCase();
+ if((a==="int"||a==="จำนวนเต็ม")&&(b==="float"||b==="เลขทศนิยม"||b==="ทศนิยม"))s++;else bad.push("ข้อ 7");
+ let r=document.getElementById("result");r.style.display="block";
+ r.innerHTML="<b>ผลตรวจอัตโนมัติ</b><br>ได้ "+s+" / 6 คะแนน"+
+ (bad.length?"<br><span class='no'>ควรทบทวน: "+bad.join(", ")+"</span>":"<br><span class='ok'>ข้อที่ตรวจอัตโนมัติถูกทั้งหมด</span>")+
+ "<br><br>ข้อ 1, 8, 9 และ 10 รอครูตรวจคำตอบเชิงอธิบาย";
+ r.scrollIntoView({behavior:"smooth"});
+}
+function saveWork(){let d={};ids.forEach(i=>d[i]=val(i));d.q3=radio("q3");d.q4=radio("q4");localStorage.setItem("kruvanda_u3_p4",JSON.stringify(d));alert("บันทึกคำตอบไว้ในเครื่องนี้แล้ว")}
+function loadWork(){let x=localStorage.getItem("kruvanda_u3_p4");if(!x)return;let d=JSON.parse(x);ids.forEach(i=>{if(d[i]!=null)document.getElementById(i).value=d[i]});["q3","q4"].forEach(n=>{if(d[n]){let e=document.querySelector('input[name="'+n+'"][value="'+d[n]+'"]');if(e)e.checked=true}})}
+function resetWork(){if(confirm("ต้องการล้างคำตอบทั้งหมดหรือไม่?")){localStorage.removeItem("kruvanda_u3_p4");location.reload()}}
+loadWork();
+</script></body></html>
