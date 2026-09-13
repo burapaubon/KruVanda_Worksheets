@@ -1,0 +1,219 @@
+<!doctype html>
+<html lang="th"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>ใบงานออนไลน์ที่ 3</title><style>
+:root{
+  --ink:#183153; --muted:#60758a; --line:#dbe8f5; --paper:#ffffff;
+  --blue:#2f80ed; --cyan:#56ccf2; --pink:#ff5c9a; --orange:#ff9f43;
+  --green:#27ae60; --purple:#8e5de7; --yellow:#ffd166; --danger:#d63031;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{
+  margin:0;font-family:"Tahoma","Noto Sans Thai",sans-serif;color:var(--ink);
+  background:
+    radial-gradient(circle at 8% 8%,#fff3bd 0 7%,transparent 8%),
+    radial-gradient(circle at 92% 10%,#ffd6e7 0 7%,transparent 8%),
+    linear-gradient(135deg,#eafaff,#fff7ed);
+}
+.wrap{max-width:980px;margin:auto;padding:24px 14px 60px}
+.hero{
+  position:relative;overflow:hidden;color:white;border-radius:30px;padding:28px;
+  box-shadow:0 18px 40px #244f7d25;
+}
+.hero:after{
+  content:"</>";position:absolute;right:26px;top:8px;font-size:100px;
+  font-weight:900;opacity:.12
+}
+.badge{display:inline-block;background:#fff;color:#2457a6;padding:7px 14px;border-radius:999px;font-weight:800}
+h1{font-size:clamp(28px,5vw,44px);margin:12px 0 4px}
+.hero p{margin:4px 0;line-height:1.7}
+.progress{height:11px;background:#ffffff40;border-radius:99px;overflow:hidden;margin-top:18px}
+.bar{height:100%;width:0;background:linear-gradient(90deg,#ffd166,#ff5c9a,#56ccf2);transition:.25s}
+.student{display:grid;grid-template-columns:1.5fr .8fr .6fr;gap:12px;margin:18px 0}
+input[type=text], textarea, select{
+  width:100%;border:2px solid var(--line);border-radius:15px;padding:12px 14px;
+  font:inherit;background:white;outline:none
+}
+input[type=text]:focus,textarea:focus,select:focus{
+  border-color:#56ccf2;box-shadow:0 0 0 4px #56ccf233
+}
+.card{
+  background:var(--paper);margin:18px 0;border-radius:24px;padding:20px;
+  box-shadow:0 10px 28px #315b7b15;border:1px solid #e8f0f7
+}
+.cardhead{display:flex;align-items:center;gap:12px;margin-bottom:12px}
+.num{
+  width:48px;height:48px;border-radius:15px;display:grid;place-items:center;color:#fff;
+  font-size:22px;font-weight:900;flex:0 0 auto
+}
+.tag{font-weight:900;font-size:18px}
+.q{font-weight:800;font-size:18px;line-height:1.55;margin:8px 0}
+.hint{padding:11px 13px;border-radius:14px;background:#f5f9fc;color:var(--muted);font-size:14px;margin:10px 0}
+textarea{min-height:96px;resize:vertical}
+.short{min-height:72px}
+.choice-row{display:flex;gap:9px;flex-wrap:wrap;margin-top:12px}
+.choice-row label,.pick{
+  border:2px solid #d8e6f1;border-radius:14px;padding:10px 13px;background:#fff;cursor:pointer
+}
+.choice-row input{margin-right:6px}
+.grid3{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}
+.scenario{padding:14px;border-radius:16px;background:#f8fbff;border:1px solid #e3edf6}
+.scenario b{display:block;margin-bottom:7px}
+.orderlist{display:grid;gap:8px}
+.orderrow{display:grid;grid-template-columns:36px 1fr;gap:8px;align-items:center}
+.actions{display:flex;gap:10px;justify-content:center;flex-wrap:wrap;margin-top:24px}
+button{
+  border:0;border-radius:999px;padding:13px 22px;font:inherit;font-weight:800;cursor:pointer
+}
+.primary{background:linear-gradient(135deg,#2457a6,#44c7e8);color:white;box-shadow:0 8px 18px #2457a633}
+.secondary{background:#fff;color:#2457a6;border:2px solid #cfe6f7}
+.danger{background:#fff1f1;color:#d63031}
+.status{text-align:center;font-weight:800;min-height:24px;margin-top:12px}
+.footer{text-align:center;color:#71879a;font-size:13px;margin-top:20px}
+.toast{
+  position:fixed;left:50%;bottom:22px;transform:translateX(-50%);
+  background:#17324d;color:#fff;padding:10px 16px;border-radius:999px;
+  opacity:0;pointer-events:none;transition:.25s;z-index:50
+}
+.toast.show{opacity:1}
+@media(max-width:700px){
+  .student{grid-template-columns:1fr}
+  .grid3{grid-template-columns:1fr}
+  .hero,.card{border-radius:20px}
+}
+@media print{
+  body{background:#fff}.actions,.progress,.status,.toast{display:none}
+  .wrap{max-width:none}.hero,.card{box-shadow:none}
+  .card{break-inside:avoid}
+}
+</style></head>
+<body><div class="wrap">
+<section class="hero" style="background:linear-gradient(120deg,#7b2cbf,#ff5c9a 55%,#ff9f43)">
+<span class="badge">หน่วยการเรียนรู้ที่ 2 • ONLINE WORKSHEET</span>
+<h1>ใบงานออนไลน์ที่ 3</h1><p><b>รหัสเทียม (Pseudo Code) และการประยุกต์</b></p>
+<p>คิดเป็นขั้นตอน • วิเคราะห์เป็นระบบ • ตอบด้วยภาษาของตนเอง</p>
+<div class="progress"><div class="bar" id="bar"></div></div>
+<div style="margin-top:8px;font-weight:800">ความคืบหน้า: <span id="progressText">0/10 ข้อ</span></div>
+</section>
+<div class="student">
+<input type="text" id="name" data-save placeholder="👤 ชื่อ–สกุล">
+<input type="text" id="room" data-save placeholder="🏫 ชั้น / ห้อง">
+<input type="text" id="no" data-save placeholder="🔢 เลขที่">
+</div>
+<section class="card" data-question>
+<div class="cardhead"><div class="num" style="background:#ff5c9a">01</div><div class="tag">ตอบสั้น</div></div>
+<div class="q">รหัสเทียม (Pseudo Code) คืออะไร และมีประโยชน์ต่อการเขียนโปรแกรมอย่างไร?</div>
+<textarea id="w3q1" data-save placeholder="อธิบายด้วยภาษาของตนเอง..."></textarea></section><section class="card" data-question data-type="radio" data-name="w3q2">
+<div class="cardhead"><div class="num" style="background:#2f80ed">02</div><div class="tag">เลือกตอบ</div></div>
+<div class="q">คำสั่งใดใช้สำหรับเริ่มต้นการทำงาน?</div>
+<div class="choice-row"><label><input id="w3q20" data-save type="radio" name="w3q2" value="START">START</label><label><input id="w3q21" data-save type="radio" name="w3q2" value="DISPLAY">DISPLAY</label><label><input id="w3q22" data-save type="radio" name="w3q2" value="INPUT">INPUT</label><label><input id="w3q23" data-save type="radio" name="w3q2" value="STOP">STOP</label></div></section><section class="card" data-question data-type="multi">
+<div class="cardhead"><div class="num" style="background:#8e5de7">03</div><div class="tag">จับคู่คำสั่ง</div></div>
+<div class="q">จับคู่ START / INPUT / DISPLAY / STOP กับหน้าที่ให้ถูกต้อง</div>
+<div class="grid3" style="grid-template-columns:repeat(2,1fr)">
+<div class="scenario">รับข้อมูล<select id="w3q3a" data-save><option value="">เลือก</option><option>START</option><option>INPUT</option><option>DISPLAY</option><option>STOP</option></select></div>
+<div class="scenario">แสดงผล<select id="w3q3b" data-save><option value="">เลือก</option><option>START</option><option>INPUT</option><option>DISPLAY</option><option>STOP</option></select></div>
+<div class="scenario">เริ่มต้น<select id="w3q3c" data-save><option value="">เลือก</option><option>START</option><option>INPUT</option><option>DISPLAY</option><option>STOP</option></select></div>
+<div class="scenario">สิ้นสุด<select id="w3q3d" data-save><option value="">เลือก</option><option>START</option><option>INPUT</option><option>DISPLAY</option><option>STOP</option></select></div>
+</div></section><section class="card" data-question>
+<div class="cardhead"><div class="num" style="background:#ff9f43">04</div><div class="tag">เรียงลำดับ</div></div>
+<div class="q">เรียงรหัสเทียมหาผลรวมให้ถูกต้อง: DISPLAY sum / START / sum=num1+num2 / STOP / INPUT num1,num2</div>
+<div class="orderrow"><b>1.</b><input type="text" id="w3q4_1" data-save placeholder="คำสั่งลำดับที่ 1"></div><div class="orderrow"><b>2.</b><input type="text" id="w3q4_2" data-save placeholder="คำสั่งลำดับที่ 2"></div><div class="orderrow"><b>3.</b><input type="text" id="w3q4_3" data-save placeholder="คำสั่งลำดับที่ 3"></div><div class="orderrow"><b>4.</b><input type="text" id="w3q4_4" data-save placeholder="คำสั่งลำดับที่ 4"></div><div class="orderrow"><b>5.</b><input type="text" id="w3q4_5" data-save placeholder="คำสั่งลำดับที่ 5"></div></section><section class="card" data-question>
+<div class="cardhead"><div class="num" style="background:#27ae60">05</div><div class="tag">จับผิด Pseudo Code</div></div>
+<div class="q">START → INPUT score → DISPLAY result → result=score+5 → STOP ผิดตรงไหน? เขียนลำดับใหม่ให้ถูกต้อง</div>
+<textarea id="w3q5" data-save placeholder="ระบุจุดที่ผิด และเขียนลำดับใหม่..."></textarea></section><section class="card" data-question>
+<div class="cardhead"><div class="num" style="background:#d9a300">06</div><div class="tag">คำนวณและวิเคราะห์</div></div>
+<div class="q">กำหนด base = 10, high = 6 และ tri = 0.5 × base × high ค่า tri เท่าใด และส่วนใดเป็น Input / Process / Output?</div>
+<input type="text" id="w3q6tri" data-save placeholder="tri = ?"><div class="grid3"><input type="text" id="w3q6i" data-save placeholder="Input"><input type="text" id="w3q6p" data-save placeholder="Process"><input type="text" id="w3q6o" data-save placeholder="Output"></div></section><section class="card" data-question>
+<div class="cardhead"><div class="num" style="background:#2f80ed">07</div><div class="tag">ประยุกต์</div></div>
+<div class="q">ถ้ารับปี พ.ศ. 2569 และใช้สูตร ac = bc − 543 จะได้ปี ค.ศ. เท่าใด? พร้อมเขียน Pseudo Code</div>
+<input type="text" id="w3q7ans" data-save placeholder="คำตอบ ค.ศ."><textarea class="short" id="w3q7pc" data-save placeholder="เขียน Pseudo Code..."></textarea></section><section class="card" data-question>
+<div class="cardhead"><div class="num" style="background:#8e5de7">08</div><div class="tag">เขียน Pseudo Code</div></div>
+<div class="q">โรงอาหารต้องการคำนวณ เงินทอน = เงินที่ลูกค้าจ่าย − ราคาอาหาร ระบุ Input / Process / Output และเขียน Pseudo Code อย่างน้อย 5 บรรทัด</div>
+<div class="grid3"><input type="text" id="w3q8i" data-save placeholder="Input"><input type="text" id="w3q8p" data-save placeholder="Process"><input type="text" id="w3q8o" data-save placeholder="Output"></div><textarea id="w3q8pc" data-save placeholder="1. START&#10;2. ...&#10;3. ...&#10;4. ...&#10;5. STOP"></textarea></section><section class="card" data-question>
+<div class="cardhead"><div class="num" style="background:#ff5c9a">09</div><div class="tag">เปรียบเทียบ</div></div>
+<div class="q">Flowchart และ Pseudo Code มีจุดเหมือนและจุดแตกต่างกันอย่างไร? แบบใดช่วยให้นักเรียนวางแผนเขียนโปรแกรมได้ง่ายกว่า เพราะเหตุใด?</div>
+<textarea id="w3q9" data-save placeholder="เหมือน / ต่าง / ฉันเลือก... เพราะ..."></textarea></section><section class="card" data-question>
+<div class="cardhead"><div class="num" style="background:#27ae60">10</div><div class="tag">Challenge</div></div>
+<div class="q">เลือกปัญหาในชีวิตประจำวัน 1 เรื่อง แล้ว ① วิเคราะห์ Input–Process–Output ② เขียน Pseudo Code ③ ระบุสัญลักษณ์ Flowchart ที่ต้องใช้</div>
+<input type="text" id="w3q10topic" data-save placeholder="เรื่องที่เลือก"><div class="grid3"><input type="text" id="w3q10i" data-save placeholder="Input"><input type="text" id="w3q10p" data-save placeholder="Process"><input type="text" id="w3q10o" data-save placeholder="Output"></div><textarea id="w3q10pc" data-save placeholder="Pseudo Code..."></textarea><input type="text" id="w3q10f" data-save placeholder="สัญลักษณ์ Flowchart ที่ใช้"></section>
+<div class="actions">
+<button class="primary" onclick="submitWork()">✓ ตรวจความครบถ้วน</button>
+<button class="secondary" onclick="window.print()">🖨 พิมพ์ / บันทึก PDF</button>
+<button class="danger" onclick="clearWork('kv_u2_w3')">↻ ล้างคำตอบ</button>
+</div>
+<div id="status" class="status"></div>
+<div class="footer">KruVanda Classroom • คำตอบบันทึกอัตโนมัติในอุปกรณ์นี้ • ปิดการวางข้อความในช่องคำตอบ</div>
+</div><div id="toast" class="toast"></div>
+<script>
+function initWorksheet(prefix){
+  const fields=[...document.querySelectorAll('[data-save]')];
+  fields.forEach(el=>{
+    const key=prefix+'_'+el.id;
+    const saved=localStorage.getItem(key);
+    if(saved!==null){
+      if(el.type==='radio'||el.type==='checkbox') el.checked=(saved===el.value || saved==='true');
+      else el.value=saved;
+    }
+    const ev=(el.type==='radio'||el.type==='checkbox'||el.tagName==='SELECT')?'change':'input';
+    el.addEventListener(ev,()=>{
+      if(el.type==='radio'){
+        document.querySelectorAll('input[name="'+el.name+'"]').forEach(r=>{
+          localStorage.setItem(prefix+'_'+r.id, r.checked?r.value:'');
+        });
+      } else if(el.type==='checkbox'){
+        localStorage.setItem(key, el.checked?'true':'false');
+      } else localStorage.setItem(key,el.value);
+      updateProgress();
+    });
+  });
+  document.querySelectorAll('textarea,input[type=text]').forEach(el=>{
+    if(el.id==='name'||el.id==='room'||el.id==='no') return;
+    el.addEventListener('paste',e=>{
+      e.preventDefault();
+      showToast('ใบงานนี้ปิดการวางข้อความ เพื่อฝึกคิดและพิมพ์คำตอบด้วยตนเอง');
+    });
+  });
+  updateProgress();
+}
+function answeredGroup(group){
+  if(group.dataset.type==='radio') return !!document.querySelector('input[name="'+group.dataset.name+'"]:checked');
+  if(group.dataset.type==='multi'){
+    return [...group.querySelectorAll('select')].every(x=>x.value.trim());
+  }
+  const targets=[...group.querySelectorAll('textarea,input[type=text],select')].filter(x=>!['name','room','no'].includes(x.id));
+  return targets.length ? targets.every(x=>x.value.trim()) : false;
+}
+function updateProgress(){
+  const groups=[...document.querySelectorAll('[data-question]')];
+  const done=groups.filter(answeredGroup).length;
+  document.getElementById('bar').style.width=(done/groups.length*100)+'%';
+  document.getElementById('progressText').textContent=done+'/'+groups.length+' ข้อ';
+}
+function submitWork(){
+  const groups=[...document.querySelectorAll('[data-question]')];
+  const missing=groups.filter(g=>!answeredGroup(g)).length;
+  const s=document.getElementById('status');
+  if(missing){
+    s.textContent='⚠️ ยังเหลือ '+missing+' ข้อ/ส่วนที่ต้องตอบให้ครบ';
+    s.style.color='#d97706';
+  }else{
+    s.textContent='🎉 ตอบครบแล้ว สามารถกด “พิมพ์ / บันทึก PDF” เพื่อส่งครูได้';
+    s.style.color='#218c53';
+  }
+}
+function clearWork(prefix){
+  if(!confirm('ต้องการล้างคำตอบทั้งหมดของใบงานนี้หรือไม่?')) return;
+  Object.keys(localStorage).filter(k=>k.startsWith(prefix+'_')).forEach(k=>localStorage.removeItem(k));
+  document.querySelectorAll('[data-save]').forEach(el=>{
+    if(el.type==='radio'||el.type==='checkbox') el.checked=false; else el.value='';
+  });
+  document.getElementById('status').textContent='';
+  updateProgress();
+}
+function showToast(msg){
+  const t=document.getElementById('toast'); t.textContent=msg;t.classList.add('show');
+  setTimeout(()=>t.classList.remove('show'),2200);
+}
+
+document.addEventListener('DOMContentLoaded',()=>initWorksheet('kv_u2_w3'));
+</script></body></html>
