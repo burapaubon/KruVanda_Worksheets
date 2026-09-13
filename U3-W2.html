@@ -1,0 +1,129 @@
+<!doctype html>
+<html lang="th">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>ใบงานออนไลน์ หน่วยที่ 3 - หน้าที่ 3</title>
+<style>
+:root{--ink:#243047;--blue:#4776d0;--light:#f5f8ff;--card:#fff;--line:#dfe6f4;--orange:#ff9d4d;--green:#2f9e74}
+*{box-sizing:border-box} body{margin:0;font-family:"Tahoma","Noto Sans Thai",sans-serif;background:linear-gradient(135deg,#eef5ff,#fff7ed);color:var(--ink)}
+.wrap{max-width:980px;margin:auto;padding:28px 16px 60px}
+.hero{background:linear-gradient(120deg,#456fd0,#6d8fe0);color:#fff;padding:28px;border-radius:24px;box-shadow:0 12px 35px #5473aa33}
+.hero h1{margin:0 0 8px;font-size:clamp(25px,4vw,38px)} .hero p{margin:5px 0;opacity:.95}
+.student,.card{background:var(--card);border:1px solid var(--line);border-radius:20px;padding:20px;margin-top:18px;box-shadow:0 8px 24px #394c7212}
+.grid{display:grid;grid-template-columns:2fr 1fr;gap:12px}@media(max-width:650px){.grid{grid-template-columns:1fr}}
+label{font-weight:700} input[type=text],textarea,select{width:100%;padding:12px;border:1px solid #cbd6e8;border-radius:12px;font:inherit;margin-top:8px;background:#fff}
+textarea{min-height:90px;resize:vertical}.qhead{display:flex;gap:10px;align-items:center;margin-bottom:10px}.badge{background:#eaf0ff;color:#365eb1;padding:6px 10px;border-radius:999px;font-weight:700}
+.code{white-space:pre-wrap;background:#172033;color:#eaf2ff;padding:14px;border-radius:12px;font-family:Consolas,monospace;line-height:1.6}
+.choice{display:inline-flex;gap:8px;align-items:center;margin:10px 20px 0 0;padding:10px 14px;background:#f7f9fd;border-radius:12px}
+.match{display:grid;grid-template-columns:1fr 180px;gap:10px;align-items:center;margin:9px 0}@media(max-width:650px){.match{grid-template-columns:1fr}}
+.actions{display:flex;gap:10px;flex-wrap:wrap;margin-top:22px}.btn{border:0;border-radius:13px;padding:13px 18px;font:inherit;font-weight:700;cursor:pointer}.primary{background:var(--blue);color:#fff}.save{background:#fff1e5;color:#9b5518}.reset{background:#eef1f6;color:#4b5669}
+.result{display:none;margin-top:18px;padding:18px;border-radius:16px;background:#edf9f4;border:1px solid #bde8d6}.small{font-size:14px;color:#68758b}.ok{color:#18845d;font-weight:700}.no{color:#c74646;font-weight:700}
+</style>
+</head>
+<body><main class="wrap">
+<section class="hero">
+<h1>ใบงานออนไลน์ หน่วยการเรียนรู้ที่ 3</h1>
+<p><b>เรื่อง ส่วนหัวโปรแกรมและฟังก์ชันมาตรฐาน</b></p>
+<p>แบบฝึก 10 ข้อ • ตรวจอัตโนมัติในข้อที่มีคำตอบแน่นอน • ข้อเขียนให้ครูตรวจ</p>
+</section>
+
+<section class="student">
+<div class="grid">
+<label>ชื่อ–สกุล<input id="name" type="text" placeholder="กรอกชื่อ–สกุล"></label>
+<label>ชั้น–ห้อง<input id="room" type="text" placeholder="เช่น ปวช.1/1"></label>
+</div>
+</section>
+
+<section class="card"><div class="qhead"><span class="badge">ข้อ 1</span><b>ตอบสั้น</b></div>
+<p>ส่วนหัวของโปรแกรม (Heading) มีหน้าที่สำคัญอย่างไรในการเขียนโปรแกรมภาษาซี?</p>
+<textarea id="q1" placeholder="เขียนคำตอบของนักเรียน"></textarea></section>
+
+<section class="card"><div class="qhead"><span class="badge">ข้อ 2</span><b>เติมคำ</b></div>
+<p>คำสั่งที่ขึ้นต้นด้วยเครื่องหมาย <b>#</b> เป็นคำสั่งที่ได้รับการทำงานก่อนที่จะมีการ ______ โปรแกรม</p>
+<input id="q2" type="text" placeholder="เติมคำในช่องว่าง"></section>
+
+<section class="card"><div class="qhead"><span class="badge">ข้อ 3</span><b>ถูก / ผิด</b></div>
+<p>คำสั่ง <b>#include</b> ใช้สำหรับเรียกใช้ไฟล์ไลบรารีหรือไฟล์ส่วนหัวที่ต้องการนำมาใช้ในโปรแกรม</p>
+<label class="choice"><input type="radio" name="q3" value="true"> ถูก</label>
+<label class="choice"><input type="radio" name="q3" value="false"> ผิด</label></section>
+
+<section class="card"><div class="qhead"><span class="badge">ข้อ 4</span><b>ถูก / ผิด</b></div>
+<p>คำสั่ง <b>#define</b> มีหน้าที่เฉพาะการรับข้อมูลจากแป้นพิมพ์เข้าสู่โปรแกรมเท่านั้น</p>
+<label class="choice"><input type="radio" name="q4" value="true"> ถูก</label>
+<label class="choice"><input type="radio" name="q4" value="false"> ผิด</label></section>
+
+<section class="card"><div class="qhead"><span class="badge">ข้อ 5</span><b>โยงคำตอบ</b></div>
+<p>จับคู่คำสั่งกับหน้าที่ให้สัมพันธ์กัน</p>
+<div class="match"><b>A. #include &lt;stdio.h&gt;</b><select id="q5a"><option value="">เลือกคำตอบ</option><option value="1">1. ใช้งานเกี่ยวกับข้อความ</option><option value="2">2. ใช้งานเกี่ยวกับการคำนวณ</option><option value="3">3. รับและแสดงผล</option><option value="4">4. กำหนดค่าคงที่/ค่าเริ่มต้น</option></select></div>
+<div class="match"><b>B. #include &lt;math.h&gt;</b><select id="q5b"><option value="">เลือกคำตอบ</option><option value="1">1. ใช้งานเกี่ยวกับข้อความ</option><option value="2">2. ใช้งานเกี่ยวกับการคำนวณ</option><option value="3">3. รับและแสดงผล</option><option value="4">4. กำหนดค่าคงที่/ค่าเริ่มต้น</option></select></div>
+<div class="match"><b>C. #include &lt;string.h&gt;</b><select id="q5c"><option value="">เลือกคำตอบ</option><option value="1">1. ใช้งานเกี่ยวกับข้อความ</option><option value="2">2. ใช้งานเกี่ยวกับการคำนวณ</option><option value="3">3. รับและแสดงผล</option><option value="4">4. กำหนดค่าคงที่/ค่าเริ่มต้น</option></select></div>
+<div class="match"><b>D. #define</b><select id="q5d"><option value="">เลือกคำตอบ</option><option value="1">1. ใช้งานเกี่ยวกับข้อความ</option><option value="2">2. ใช้งานเกี่ยวกับการคำนวณ</option><option value="3">3. รับและแสดงผล</option><option value="4">4. กำหนดค่าคงที่/ค่าเริ่มต้น</option></select></div>
+</section>
+
+<section class="card"><div class="qhead"><span class="badge">ข้อ 6</span><b>จำแนกประเภท</b></div>
+<p>เลือกประเภทของคำสั่งแต่ละข้อ</p>
+<div class="match"><code>#define YES 1</code><select id="q6a"><option value="">เลือก</option><option>#include</option><option>#define</option></select></div>
+<div class="match"><code>#include &lt;stdio.h&gt;</code><select id="q6b"><option value="">เลือก</option><option>#include</option><option>#define</option></select></div>
+<div class="match"><code>#define TEXT "11223344"</code><select id="q6c"><option value="">เลือก</option><option>#include</option><option>#define</option></select></div>
+<div class="match"><code>#include &lt;math.h&gt;</code><select id="q6d"><option value="">เลือก</option><option>#include</option><option>#define</option></select></div>
+</section>
+
+<section class="card"><div class="qhead"><span class="badge">ข้อ 7</span><b>อ่านโค้ด</b></div>
+<div class="code">#define YES 1
+#define NO 2</div>
+<div class="grid"><label>YES =<input id="q7a" type="text"></label><label>NO =<input id="q7b" type="text"></label></div></section>
+
+<section class="card"><div class="qhead"><span class="badge">ข้อ 8</span><b>อ่านและอธิบายโค้ด</b></div>
+<div class="code">#define ANS (10+20+30)</div>
+<p>คำสั่งนี้เป็นการกำหนดค่าคงที่ลักษณะใด และเมื่อนำ ANS ไปใช้ จะเกี่ยวข้องกับการทำงานแบบใด?</p>
+<textarea id="q8"></textarea></section>
+
+<section class="card"><div class="qhead"><span class="badge">ข้อ 9</span><b>คิดวิเคราะห์</b></div>
+<p>ถ้านักเรียนเขียนโปรแกรมที่ต้องคำนวณทางคณิตศาสตร์ แต่ไม่ได้เรียกใช้ไฟล์ส่วนหัวที่จำเป็น นักเรียนคิดว่าจะส่งผลต่อการเขียนหรือการทำงานของโปรแกรมอย่างไร?</p>
+<textarea id="q9"></textarea></section>
+
+<section class="card"><div class="qhead"><span class="badge">ข้อ 10</span><b>ประยุกต์ใช้</b></div>
+<p>สมมติว่าต้องสร้างโปรแกรมที่มีการรับ–แสดงผลข้อมูล คำนวณทางคณิตศาสตร์ และจัดการข้อความ นักเรียนจะเลือกใช้ไฟล์ส่วนหัวใดบ้าง พร้อมบอกเหตุผล</p>
+<textarea id="q10"></textarea></section>
+
+<div class="actions">
+<button class="btn primary" onclick="checkAnswers()">ตรวจคำตอบ</button>
+<button class="btn save" onclick="saveWork()">บันทึกไว้ในเครื่องนี้</button>
+<button class="btn reset" onclick="resetWork()">เริ่มใหม่</button>
+</div>
+<div id="result" class="result"></div>
+<p class="small">หมายเหตุ: ข้อ 1, 8, 9 และ 10 เป็นคำตอบแบบอธิบาย ให้ครูตรวจเพิ่มเติม</p>
+</main>
+
+<script>
+const ids=["name","room","q1","q2","q5a","q5b","q5c","q5d","q6a","q6b","q6c","q6d","q7a","q7b","q8","q9","q10"];
+function val(id){return document.getElementById(id).value.trim()}
+function radio(name){let x=document.querySelector('input[name="'+name+'"]:checked'); return x?x.value:""}
+function checkAnswers(){
+ let score=0,total=10, notes=[];
+ if(["ประมวลผล","การประมวลผล"].includes(val("q2"))) score++; else notes.push("ข้อ 2");
+ if(radio("q3")==="true") score++; else notes.push("ข้อ 3");
+ if(radio("q4")==="false") score++; else notes.push("ข้อ 4");
+ if(val("q5a")==="3"&&val("q5b")==="2"&&val("q5c")==="1"&&val("q5d")==="4") score++; else notes.push("ข้อ 5");
+ if(val("q6a")==="#define"&&val("q6b")==="#include"&&val("q6c")==="#define"&&val("q6d")==="#include") score++; else notes.push("ข้อ 6");
+ if(val("q7a")==="1"&&val("q7b")==="2") score++; else notes.push("ข้อ 7");
+ let r=document.getElementById("result"); r.style.display="block";
+ r.innerHTML="<b>ผลตรวจอัตโนมัติ</b><br>ได้ "+score+" / 6 คะแนนในข้อที่ตรวจอัตโนมัติ"+
+ (notes.length?"<br><span class='no'>ควรทบทวน: "+notes.join(", ")+"</span>":"<br><span class='ok'>ข้อที่ตรวจอัตโนมัติถูกทั้งหมด</span>")+
+ "<br><br>ข้อ 1, 8, 9 และ 10 รอครูตรวจคำตอบเชิงอธิบาย";
+ r.scrollIntoView({behavior:"smooth"});
+}
+function saveWork(){
+ let data={}; ids.forEach(id=>data[id]=val(id)); data.q3=radio("q3"); data.q4=radio("q4");
+ localStorage.setItem("kruvanda_unit3_page3",JSON.stringify(data));
+ alert("บันทึกคำตอบไว้ในเครื่องนี้แล้ว");
+}
+function loadWork(){
+ let raw=localStorage.getItem("kruvanda_unit3_page3"); if(!raw)return;
+ let d=JSON.parse(raw); ids.forEach(id=>{if(d[id]!=null)document.getElementById(id).value=d[id]});
+ ["q3","q4"].forEach(n=>{if(d[n]){let x=document.querySelector('input[name="'+n+'"][value="'+d[n]+'"]');if(x)x.checked=true}});
+}
+function resetWork(){if(confirm("ต้องการล้างคำตอบทั้งหมดหรือไม่?")){localStorage.removeItem("kruvanda_unit3_page3");location.reload()}}
+loadWork();
+</script></body></html>
