@@ -115,9 +115,79 @@ function checkAnswers(){
  r.scrollIntoView({behavior:"smooth"});
 }
 function saveWork(){
- let data={}; ids.forEach(id=>data[id]=val(id)); data.q3=radio("q3"); data.q4=radio("q4");
- localStorage.setItem("kruvanda_unit3_page3",JSON.stringify(data));
- alert("บันทึกคำตอบไว้ในเครื่องนี้แล้ว");
+  let data = {};
+  ids.forEach(id => data[id] = val(id));
+  data.q3 = radio("q3");
+  data.q4 = radio("q4");
+
+  // เก็บคำตอบไว้ในเบราว์เซอร์ ป้องกันงานหาย
+  localStorage.setItem("kruvanda_unit3_page3", JSON.stringify(data));
+
+  // สร้างไฟล์คำตอบ
+  let text = `ใบงานออนไลน์ หน่วยการเรียนรู้ที่ 3
+เรื่อง ส่วนหัวโปรแกรมและฟังก์ชันมาตรฐาน
+
+ชื่อ–สกุล: ${data.name}
+ชั้น–ห้อง: ${data.room}
+
+ข้อ 1
+${data.q1}
+
+ข้อ 2
+${data.q2}
+
+ข้อ 3
+${data.q3 === "true" ? "ถูก" : data.q3 === "false" ? "ผิด" : "ไม่ได้ตอบ"}
+
+ข้อ 4
+${data.q4 === "true" ? "ถูก" : data.q4 === "false" ? "ผิด" : "ไม่ได้ตอบ"}
+
+ข้อ 5
+A = ${data.q5a}
+B = ${data.q5b}
+C = ${data.q5c}
+D = ${data.q5d}
+
+ข้อ 6
+1 = ${data.q6a}
+2 = ${data.q6b}
+3 = ${data.q6c}
+4 = ${data.q6d}
+
+ข้อ 7
+YES = ${data.q7a}
+NO = ${data.q7b}
+
+ข้อ 8
+${data.q8}
+
+ข้อ 9
+${data.q9}
+
+ข้อ 10
+${data.q10}
+`;
+
+  const blob = new Blob([text], {
+    type: "text/plain;charset=utf-8"
+  });
+
+  const url = URL.createObjectURL(blob);
+  const a = document.createElement("a");
+
+  let studentName = data.name || "นักเรียน";
+  studentName = studentName.replace(/[\\/:*?"<>|]/g, "_");
+
+  a.href = url;
+  a.download = `ใบงานหน่วย3_${studentName}.txt`;
+
+  document.body.appendChild(a);
+  a.click();
+  document.body.removeChild(a);
+
+  URL.revokeObjectURL(url);
+
+  alert("ดาวน์โหลดใบงานเรียบร้อยแล้ว");
 }
 function loadWork(){
  let raw=localStorage.getItem("kruvanda_unit3_page3"); if(!raw)return;
