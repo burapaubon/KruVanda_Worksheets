@@ -19,6 +19,30 @@ textarea{min-height:90px;resize:vertical}.qhead{display:flex;gap:10px;align-item
 .match{display:grid;grid-template-columns:1fr 180px;gap:10px;align-items:center;margin:9px 0}@media(max-width:650px){.match{grid-template-columns:1fr}}
 .actions{display:flex;gap:10px;flex-wrap:wrap;margin-top:22px}.btn{border:0;border-radius:13px;padding:13px 18px;font:inherit;font-weight:700;cursor:pointer}.primary{background:var(--blue);color:#fff}.save{background:#fff1e5;color:#9b5518}.reset{background:#eef1f6;color:#4b5669}
 .result{display:none;margin-top:18px;padding:18px;border-radius:16px;background:#edf9f4;border:1px solid #bde8d6}.small{font-size:14px;color:#68758b}.ok{color:#18845d;font-weight:700}.no{color:#c74646;font-weight:700}
+@media print{
+  body{
+    background:#fff;
+  }
+
+  .actions{
+    display:none !important;
+  }
+
+  .hero,
+  .student,
+  .card{
+    box-shadow:none !important;
+  }
+
+  .wrap{
+    max-width:100%;
+    padding:10px;
+  }
+
+  textarea{
+    resize:none;
+  }
+}
 </style>
 </head>
 <body><main class="wrap">
@@ -88,9 +112,17 @@ textarea{min-height:90px;resize:vertical}.qhead{display:flex;gap:10px;align-item
 <textarea id="q10"></textarea></section>
 
 <div class="actions">
-<button class="btn primary" onclick="checkAnswers()">ตรวจคำตอบ</button>
-<button class="btn save" onclick="saveWork()">บันทึกไว้ในเครื่องนี้</button>
-<button class="btn reset" onclick="resetWork()">เริ่มใหม่</button>
+  <button type="button" class="btn primary" onclick="checkAnswers()">
+    ตรวจคำตอบที่ตรวจอัตโนมัติ
+  </button>
+
+  <button type="button" class="btn save" onclick="saveWork()">
+    บันทึกไว้ในเครื่องนี้
+  </button>
+
+  <button type="button" class="btn reset" onclick="window.print()">
+    พิมพ์ / บันทึก PDF
+  </button>
 </div>
 <div id="result" class="result"></div>
 <p class="small">หมายเหตุ: ข้อ 1, 8, 9 และ 10 เป็นคำตอบแบบอธิบาย ให้ครูตรวจเพิ่มเติม</p>
@@ -101,7 +133,7 @@ const ids=["name","room","q1","q2","q5a","q5b","q5c","q5d","q6a","q6b","q6c","q6
 function val(id){return document.getElementById(id).value.trim()}
 function radio(name){let x=document.querySelector('input[name="'+name+'"]:checked'); return x?x.value:""}
 function checkAnswers(){
- let score=0,total=10, notes=[];
+let score=0,total=6, notes=[];
  if(["ประมวลผล","การประมวลผล"].includes(val("q2"))) score++; else notes.push("ข้อ 2");
  if(radio("q3")==="true") score++; else notes.push("ข้อ 3");
  if(radio("q4")==="false") score++; else notes.push("ข้อ 4");
@@ -116,84 +148,39 @@ function checkAnswers(){
 }
 function saveWork(){
   let data = {};
+
   ids.forEach(id => data[id] = val(id));
+
   data.q3 = radio("q3");
   data.q4 = radio("q4");
 
-  // เก็บคำตอบไว้ในเบราว์เซอร์ ป้องกันงานหาย
-  localStorage.setItem("kruvanda_unit3_page3", JSON.stringify(data));
+  localStorage.setItem(
+    "kruvanda_unit3_page3",
+    JSON.stringify(data)
+  );
 
-  // สร้างไฟล์คำตอบ
-  let text = `ใบงานออนไลน์ หน่วยการเรียนรู้ที่ 3
-เรื่อง ส่วนหัวโปรแกรมและฟังก์ชันมาตรฐาน
-
-ชื่อ–สกุล: ${data.name}
-ชั้น–ห้อง: ${data.room}
-
-ข้อ 1
-${data.q1}
-
-ข้อ 2
-${data.q2}
-
-ข้อ 3
-${data.q3 === "true" ? "ถูก" : data.q3 === "false" ? "ผิด" : "ไม่ได้ตอบ"}
-
-ข้อ 4
-${data.q4 === "true" ? "ถูก" : data.q4 === "false" ? "ผิด" : "ไม่ได้ตอบ"}
-
-ข้อ 5
-A = ${data.q5a}
-B = ${data.q5b}
-C = ${data.q5c}
-D = ${data.q5d}
-
-ข้อ 6
-1 = ${data.q6a}
-2 = ${data.q6b}
-3 = ${data.q6c}
-4 = ${data.q6d}
-
-ข้อ 7
-YES = ${data.q7a}
-NO = ${data.q7b}
-
-ข้อ 8
-${data.q8}
-
-ข้อ 9
-${data.q9}
-
-ข้อ 10
-${data.q10}
-`;
-
-  const blob = new Blob([text], {
-    type: "text/plain;charset=utf-8"
-  });
-
-  const url = URL.createObjectURL(blob);
-  const a = document.createElement("a");
-
-  let studentName = data.name || "นักเรียน";
-  studentName = studentName.replace(/[\\/:*?"<>|]/g, "_");
-
-  a.href = url;
-  a.download = `ใบงานหน่วย3_${studentName}.txt`;
-
-  document.body.appendChild(a);
-  a.click();
-  document.body.removeChild(a);
-
-  URL.revokeObjectURL(url);
-
-  alert("ดาวน์โหลดใบงานเรียบร้อยแล้ว");
+  alert("บันทึกคำตอบไว้ในเครื่องนี้แล้ว");
 }
 function loadWork(){
- let raw=localStorage.getItem("kruvanda_unit3_page3"); if(!raw)return;
- let d=JSON.parse(raw); ids.forEach(id=>{if(d[id]!=null)document.getElementById(id).value=d[id]});
- ["q3","q4"].forEach(n=>{if(d[n]){let x=document.querySelector('input[name="'+n+'"][value="'+d[n]+'"]');if(x)x.checked=true}});
+  let raw = localStorage.getItem("kruvanda_unit3_page3");
+  if(!raw) return;
+
+  let d = JSON.parse(raw);
+
+  ids.forEach(id=>{
+    if(d[id] != null)
+      document.getElementById(id).value = d[id];
+  });
+
+  ["q3","q4"].forEach(n=>{
+    if(d[n]){
+      let x = document.querySelector(
+        'input[name="'+n+'"][value="'+d[n]+'"]'
+      );
+      if(x) x.checked = true;
+    }
+  });
 }
-function resetWork(){if(confirm("ต้องการล้างคำตอบทั้งหมดหรือไม่?")){localStorage.removeItem("kruvanda_unit3_page3");location.reload()}}
+
 loadWork();
 </script></body></html>
