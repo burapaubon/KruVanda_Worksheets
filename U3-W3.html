@@ -16,6 +16,35 @@ label{font-weight:700}input[type=text],textarea,select{width:100%;padding:12px;b
 .match{display:grid;grid-template-columns:1fr 210px;gap:10px;align-items:center;margin:9px 0}@media(max-width:650px){.match{grid-template-columns:1fr}}
 .actions{display:flex;flex-wrap:wrap;gap:10px;margin-top:22px}.btn{border:0;border-radius:13px;padding:13px 18px;font:inherit;font-weight:700;cursor:pointer}.primary{background:var(--blue);color:white}.save{background:#fff0e3;color:#9b5518}.reset{background:#edf1f6;color:#4d596b}
 .result{display:none;background:#edf9f4;border:1px solid #bce7d6;padding:18px;border-radius:16px;margin-top:18px}.ok{color:#167d5a;font-weight:700}.no{color:#c74545;font-weight:700}.small{font-size:14px;color:#69778d}
+.print-answer{display:none}
+
+@media print{
+  @page{size:A4;margin:15mm}
+  body{background:#fff;color:#000}
+  .wrap{max-width:100%;padding:0}
+  .actions{display:none!important}
+  .hero,.card{box-shadow:none;border-radius:10px}
+  .hero{background:#fff;color:#000;border:1px solid #ccc;padding:16px}
+  .card{padding:14px;margin-top:12px}
+  .grid{grid-template-columns:2fr 1fr}
+  .match{grid-template-columns:1fr 210px}
+  .qhead{break-after:avoid}
+  .code{background:#f3f3f3;color:#000}
+  input[type=text],textarea,select{display:none!important}
+  .print-answer{
+    display:block;
+    white-space:pre-wrap;
+    overflow-wrap:anywhere;
+    border:1px solid #ccc;
+    border-radius:6px;
+    padding:10px;
+    margin-top:8px;
+    min-height:38px;
+    font-weight:400;
+  }
+  .choice{background:#fff}
+  .result{background:#fff;color:#000}
+}
 </style></head>
 <body><main class="wrap">
 <section class="hero"><h1>ใบงานออนไลน์ หน่วยการเรียนรู้ที่ 3</h1><p><b>หน้าที่ 4 : Global Variables และ Main Program</b></p><p>จำนวน 10 ข้อ • มีการตรวจคำตอบอัตโนมัติ • ข้อคิดวิเคราะห์ให้ครูตรวจ</p></section>
@@ -72,7 +101,7 @@ float h;</div>
 <div class="code">score     2number     float     Student_Name</div>
 <textarea id="q10" placeholder="ระบุชื่อที่ไม่เหมาะสมและเหตุผล"></textarea></section>
 
-<div class="actions"><button class="btn primary" onclick="checkAnswers()">ตรวจคำตอบ</button><button class="btn save" onclick="saveWork()">บันทึกไว้ในเครื่องนี้</button><button class="btn reset" onclick="resetWork()">เริ่มใหม่</button></div>
+<div class="actions"><button class="btn primary" onclick="checkAnswers()">ตรวจคำตอบ</button><button class="btn save" onclick="saveWork()">บันทึกไว้ในเครื่องนี้</button><button type="button" class="btn reset" onclick="savePDF()">บันทึกเป็น PDF</button></div>
 <div id="result" class="result"></div>
 <p class="small">ข้อ 1, 8, 9 และ 10 เป็นคำตอบแบบอธิบาย ให้ครูตรวจเพิ่มเติม</p>
 </main>
@@ -97,6 +126,34 @@ function checkAnswers(){
 }
 function saveWork(){let d={};ids.forEach(i=>d[i]=val(i));d.q3=radio("q3");d.q4=radio("q4");localStorage.setItem("kruvanda_u3_p4",JSON.stringify(d));alert("บันทึกคำตอบไว้ในเครื่องนี้แล้ว")}
 function loadWork(){let x=localStorage.getItem("kruvanda_u3_p4");if(!x)return;let d=JSON.parse(x);ids.forEach(i=>{if(d[i]!=null)document.getElementById(i).value=d[i]});["q3","q4"].forEach(n=>{if(d[n]){let e=document.querySelector('input[name="'+n+'"][value="'+d[n]+'"]');if(e)e.checked=true}})}
-function resetWork(){if(confirm("ต้องการล้างคำตอบทั้งหมดหรือไม่?")){localStorage.removeItem("kruvanda_u3_p4");location.reload()}}
+function preparePDF(){
+  document.querySelectorAll(".print-answer").forEach(e=>e.remove());
+
+  document.querySelectorAll('input[type="text"],textarea,select').forEach(field=>{
+    const answer=document.createElement("div");
+    answer.className="print-answer";
+
+    if(field.tagName==="SELECT"){
+      answer.textContent=field.value
+        ?field.options[field.selectedIndex].text
+        :"ยังไม่ได้ตอบ";
+    }else{
+      answer.textContent=field.value.trim()||"ยังไม่ได้กรอก";
+    }
+
+    field.insertAdjacentElement("afterend",answer);
+  });
+}
+
+function savePDF(){
+  preparePDF();
+  window.print();
+}
+
+window.addEventListener("beforeprint",preparePDF);
+
+window.addEventListener("afterprint",()=>{
+  document.querySelectorAll(".print-answer").forEach(e=>e.remove());
+});
 loadWork();
 </script></body></html>
